@@ -30,28 +30,24 @@ public class BaseTest {
     String suiteName = "";
 
     @BeforeSuite(alwaysRun = true)
-    public void startReport(ITestContext iTestContext) {
+    public void startReport(ITestContext iTestContext){
         extentReports = ExtentReportsManager.loadConfig();
         suiteName = iTestContext.getCurrentXmlTest().getSuite().getName();
-
-
     }
-
     @BeforeMethod(alwaysRun = true)
-    public void setUp(Method method, ITestResult result) {
+    public void setUp(Method method, ITestResult result){
         initializeDriver(ConfigReader.readProperty("browser", propertyPath));
-
         extentTest = extentReports.startTest((this.getClass().getSimpleName() + " : " + method.getName()), method.getName());
-        extentTest.assignAuthor("Tester");
-
+        extentTest.assignAuthor("Vic");
+        extentTest.assignCategory(suiteName);
         extentTest.log(LogStatus.INFO, result.getMethod().getDescription());
-
-        getDriver().get(ConfigReader.readProperty("url", propertyPath));
         screenshot = new Screenshot(getDriver(), extentTest);
+        getDriver().get(ConfigReader.readProperty("url", propertyPath));
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(ITestResult result) {
+    public void tearDown(ITestResult result){
+        ExtentReportsManager.logExtent(extentReports, extentTest, result);
         getDriver().quit();
     }
 
@@ -78,6 +74,7 @@ public class BaseTest {
         }
         drivers.set(driver);
         getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        getDriver().manage().window().maximize();
     }
 
     public WebDriver getDriver() {
@@ -86,5 +83,6 @@ public class BaseTest {
             System.out.println("driver object was null");
         }
         return driver;
+
     }
 }
