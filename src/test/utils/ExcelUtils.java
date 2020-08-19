@@ -18,7 +18,7 @@ public class ExcelUtils {
         FileInputStream fileInputStream = new FileInputStream("C:\\Users\\Asus\\Desktop/userData.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
-        UserTLA userTLA = new UserTLA();
+
 //        int rowNum = sheet.getPhysicalNumberOfRows();
 //        for (int i = 0; i < rowNum; i++){
 //            Row row = sheet.getRow(i);
@@ -60,17 +60,18 @@ public class ExcelUtils {
 //            String phonenum = faker.phoneNumber().phoneNumber();
 //            String email = faker.internet().emailAddress();
 
-
-            Sheet users = workbook.createSheet("Users");
-            String [] headers = {"First name", "Last name", "phone number", "email"};
+        UserTLA userTLA = new UserTLA();
+            Sheet users = workbook.getSheet("Users");
+            String firstname = userTLA.getFirstName();
+            String lastname = userTLA.getLastName();
+            String phoneNumber = userTLA.getPhoneNumber();
+            String email = userTLA.getEmail();
             Row row = users.createRow(0);
             for(int i = 0; i < 20; i ++) {
-                row.createCell(i).setCellValue(headers[i]);
-                userTLA.getFirstName();
-                userTLA.getLastName();
-                userTLA.getPhoneNumber();
-                userTLA.getEmail();
-
+                row.createCell(i).setCellValue(firstname);
+                row.createCell(i).setCellValue(lastname);
+                row.createCell(i).setCellValue(phoneNumber);
+                row.createCell(i).setCellValue(email);
             }
 
 
