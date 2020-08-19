@@ -60,19 +60,19 @@ public class ExcelUtils {
 //            String phonenum = faker.phoneNumber().phoneNumber();
 //            String email = faker.internet().emailAddress();
 
-        UserTLA userTLA = new UserTLA();
-            Sheet users = workbook.getSheet("Users");
-            String firstname = userTLA.getFirstName();
-            String lastname = userTLA.getLastName();
-            String phoneNumber = userTLA.getPhoneNumber();
-            String email = userTLA.getEmail();
-            Row row = users.createRow(0);
-            for(int i = 0; i < 20; i ++) {
-                row.createCell(i).setCellValue(firstname);
-                row.createCell(i).setCellValue(lastname);
-                row.createCell(i).setCellValue(phoneNumber);
-                row.createCell(i).setCellValue(email);
-            }
+//        UserTLA userTLA = new UserTLA();
+//            Sheet users = workbook.getSheet("Users");
+//            String firstname = userTLA.getFirstName();
+//          String lastname = userTLA.getLastName();
+//            String phoneNumber = userTLA.getPhoneNumber();
+//            String email = userTLA.getEmail();
+//            Row row = users.createRow(0);
+//            for(int i = 0; i < 20; i ++) {
+//                row.createCell(i).setCellValue(userTLA.firstname);
+//                row.createCell(i).setCellValue(lastname);
+//                row.createCell(i).setCellValue(phoneNumber);
+//                row.createCell(i).setCellValue(email);
+//            }
 
 
     }

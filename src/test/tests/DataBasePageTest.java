@@ -32,9 +32,10 @@ public class DataBasePageTest extends BaseTest {
 
     }
     @Test(description = "verify title of the page is User DB")
-    public void verifyingUserDBTittle(){
+    public void verifyingUserDBTittle() throws InterruptedException {
         userMgtPage.click(userMgtPage.accessBtn);
         extentTest.log(LogStatus.INFO, "Verifying User DataBase");
+        dataBasePage.userDb.wait(2000);
         Assert.assertEquals(getDriver().getTitle(), "User Database");
         screenshot.takeScreenshotAndLog();
 
