@@ -59,6 +59,7 @@ public class BaseTest {
 
 
     private void initializeDriver(String browser) {
+
         WebDriver driver = null;
         switch (browser) {
             case "chrome":
