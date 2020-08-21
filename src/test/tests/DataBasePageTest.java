@@ -17,10 +17,10 @@ import java.lang.reflect.Method;
 public class DataBasePageTest extends BaseTest {
     CommonPage commonPage;
     UserMgtPage userMgtPage;
-//    UserTLA userTLA;
+    UserTLA userTLA;
     DataBasePage dataBasePage;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp(Method method, ITestResult iTestResult) {
         super.setUp(method, iTestResult);
         commonPage = new CommonPage(getDriver());
@@ -32,16 +32,13 @@ public class DataBasePageTest extends BaseTest {
 
     }
     @Test(description = "verify title of the page is User DB")
-    public void verifyingUserDBTittle() throws InterruptedException {
-        userMgtPage.click(userMgtPage.accessBtn);
-        extentTest.log(LogStatus.INFO, "Verifying User DataBase");
-        dataBasePage.userDb.wait(2000);
-        Assert.assertEquals(getDriver().getTitle(), "User Database");
+    public void verifyingUserDBTittle() {
+        dataBasePage.click(userMgtPage.accessBtn);
+        dataBasePage.waitForPageToLoad();
+        dataBasePage.handleWindow();
+        Assert.assertEquals(getDriver().getTitle(), "User DB");
+        extentTest.log(LogStatus.INFO, "verify title in User DB page");
         screenshot.takeScreenshotAndLog();
-
-    }
-    @Test(description = "verify all fields in registration form are present as table row headers")
-   public void verifyingFieldsForms(){
 
     }
 

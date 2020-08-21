@@ -26,7 +26,8 @@ public class HomePageTest extends BaseTest {
         HomePage = new HomePage(getDriver());
 
     }
-//    @Test
+
+    //    @Test
 //    public void validatePageHeader() {
 //        LogInPage.logIn("standard");
 //        Assert.assertEquals(HomePage.headerText.getText(), "Products");
@@ -38,19 +39,10 @@ public class HomePageTest extends BaseTest {
         Assert.assertEquals(getDriver().getTitle(), "TLA Automation");
 
     }
-//    @Test(description = "Testing all navigation buttons are present")
-//    public void verifyNavigationPresent(){
-//        extentTest.log(LogStatus.INFO, "verify Navigation are Present");
-//        for(int i = 0; i < HomePage.getNavigationButtonArray().length; i ++) {
-//            Assert.assertTrue(HomePage.getNavigationButtonArray()[i].isDisplayed(),  i + "is NOT DISPLAYED");
-//
-//           extentTest.log(LogStatus.PASS, "test button: " + i + "is success" );
+}
 
 
-        }
 
-
-//    }
 
 //    }
 

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.Set;
 
 public class DataBasePage extends BasePage {
     WebDriver driver;
@@ -15,25 +16,30 @@ public class DataBasePage extends BasePage {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
-    }
-
-    @FindBy(xpath = "//*[text()='User Database']")
-    public WebElement userDb;
-
-
-    @FindBy(xpath = "(//tr)[1]")
-    public List<WebElement> fieldsRows;
-
-
-    public void fieldTheForm(String firstname, String lastname, String role, String phonenumber, String email, String password) {
-        sendKeys(fieldsRows.get(0), firstname);
-        sendKeys(fieldsRows.get(1), lastname);
-        sendKeys(fieldsRows.get(2), role);
-        sendKeys(fieldsRows.get(3), phonenumber);
-        sendKeys(fieldsRows.get(4), email);
-        sendKeys(fieldsRows.get(5), password);
-
 
     }
+
+    @FindBy(xpath = "//tr/th")
+    public List<WebElement> thHeader;
+
+    @FindBy(xpath = "//button[id='access-db-btn']")
+    public WebElement accessBtn;
+
+    //handle window when switch to DataBasePage
+    public void handleWindow() {
+
+        String mainWindow = driver.getWindowHandle();
+        Set<String> set = driver.getWindowHandles();
+
+        for(String e : set) {
+            if(!e.equals(mainWindow)) {
+                driver.switchTo().window(e);
+            }
+        }
+    }
+    @FindBy(xpath = "//tbody/tr/td[7]")
+    public List<WebElement> allEditDeleteRow;
+
+
 }
 
